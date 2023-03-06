@@ -14,7 +14,9 @@ import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 //@CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -55,6 +57,27 @@ public class Controller {
         return new ResponseEntity<>(imageservice.uploadImage(File,o), HttpStatus.OK);
     }
 
+    @GetMapping("search/{name}/{country}/{gender}/{event}")
+    public List<Athlete> getStudentMarks(@PathVariable String name, @PathVariable String country,
+                                         @PathVariable String gender,@PathVariable String event) {
 
+
+        return this.athleteservice.Search(name,country,gender,event);
+    }
+
+    @PutMapping("/updateAthlete/{id}")
+    public ResponseEntity<?> update(@RequestBody Athlete athlete, @PathVariable Long id) {
+        try {
+            Athlete o=athleteservice.Find(id);
+            Long athleteid = o.getId();
+            if(athleteid!=0) {
+                athlete.setId(id);
+                athleteservice.saveAthlete(athlete);
+            }
+            return new ResponseEntity<>(athlete,HttpStatus.OK);
+        } catch (NoSuchElementException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }

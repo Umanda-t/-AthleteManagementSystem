@@ -2,8 +2,10 @@ package com.example.vitalhubassessment;
 
 import com.example.vitalhubassessment.Model.Athlete;
 import com.example.vitalhubassessment.Model.ProfileImage;
+import com.example.vitalhubassessment.Model.Result;
 import com.example.vitalhubassessment.Service.AthleteService;
 import com.example.vitalhubassessment.Service.ProfileImageService;
+import com.example.vitalhubassessment.Service.ResultService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class Controller {
     @Autowired
@@ -26,6 +28,9 @@ public class Controller {
 
     @Autowired
     private ProfileImageService imageservice;
+
+    @Autowired
+    private ResultService resultservice;
 
     @PostMapping("addAthlete")
     public Long AddAthlete(@RequestBody Map<String, Object> payload) {
@@ -79,5 +84,15 @@ public class Controller {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @PostMapping("addResult")
+    public Result addResult(@RequestBody Result r){
+     return resultservice.saveResult(r);
+    }
+
+    @GetMapping("allResult")
+    public List<Result> getAllMarks() {
+        return this.resultservice.getAllResult();
+    }
+
 
 }

@@ -31,9 +31,9 @@ public class AthleteRepositoryTest {
         o.setEvent("100m");
         Athlete saved = repo.save(o);
 
-        Athlete existBook = entityManager.find(Athlete.class, saved.getId());
+        Athlete exist = entityManager.find(Athlete.class, saved.getId());
 
-        assertThat(o.getId()).isEqualTo(existBook.getId());
+        assertThat(o.getId()).isEqualTo(exist.getId());
 
     }
 }

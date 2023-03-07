@@ -1,8 +1,9 @@
 package com.example.vitalhubassessment;
 
 import com.example.vitalhubassessment.Model.Athlete;
-import com.example.vitalhubassessment.Model.ProfileImage;
-import com.example.vitalhubassessment.Repository.ProfileImageRepository;
+import com.example.vitalhubassessment.Model.Result;
+import com.example.vitalhubassessment.Repository.AthleteRepository;
+import com.example.vitalhubassessment.Repository.ResultRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -14,24 +15,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class ProfileImageRepositoryTest {
+public class ResultRepositoryTest {
     @Autowired
     private TestEntityManager entityManager;
 
     @Autowired
-    private ProfileImageRepository repo;
+    private ResultRepository repo;
+
+    @Autowired
+    private AthleteRepository athleterepo;
     @Test
     public void testCreate() {
         Athlete a=entityManager.find(Athlete.class,1L);
-        ProfileImage o = new ProfileImage();
-        o.setAid(a);
-        o.setDownloadUri("/downloadFile/AE7GPzg1");
-        o.setFileName("Photo.jpg");
-        o.setSize(13573);
+        Result o = new Result();
+        o.setAthlete(a);
+        o.setResult("2nd Place");
 
-        ProfileImage saved = repo.save(o);
+        Result saved = repo.save(o);
 
-        ProfileImage exist = entityManager.find(ProfileImage.class, saved.getId());
+        Result exist = entityManager.find(Result.class, saved.getId());
 
         assertThat(o.getId()).isEqualTo(exist.getId());
 

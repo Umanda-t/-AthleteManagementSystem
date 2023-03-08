@@ -9,7 +9,7 @@ function Banner() {
       <div  style={{  position: 'relative', align:'center', color: 'white' }}>
       <Image
       width={1270}
-      height={700}
+      height={600}
        src="https://i.postimg.cc/d0PtLnNW/pngtree-a-vector-illustration-of-athletes-in-different-sports-poster-picture-image-1770551.png"  alt="bannerbg" 
       
     />

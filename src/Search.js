@@ -24,7 +24,7 @@ class Search extends React.Component
 
     componentDidMount(){
 
-        axios.get("http://localhost:8080/allAthlete").then((response) => {
+        axios.get("http://localhost:8080/allResult").then((response) => {
             this.setState({athlete:response.data})
         });
     }
@@ -120,7 +120,7 @@ class Search extends React.Component
     <th>Country</th>
     <th>Gender</th>
     <th>Event</th>
-
+      <th>Result</th>
     
   </tr>
   </thead>
@@ -129,12 +129,12 @@ class Search extends React.Component
           this.state.athlete.map(
             athlete =>
       <tr key="{athlete.id}">
-       <td> {athlete.id}</td>
-       <td>{athlete.firstname} &nbsp; {athlete.lastname}</td>
-       <td>{athlete.country}</td>
-       <td>{athlete.gender}</td>
-       <td>{athlete.event}</td>
-        
+       <td> {athlete.athlete.id}</td>
+       <td>{athlete.athlete.firstname} &nbsp; {athlete.athlete.lastname}</td>
+       <td>{athlete.athlete.country}</td>
+       <td>{athlete.athlete.gender}</td>
+       <td>{athlete.athlete.event}</td>
+          <td >{athlete.result}</td>
     
   </tr>
           )

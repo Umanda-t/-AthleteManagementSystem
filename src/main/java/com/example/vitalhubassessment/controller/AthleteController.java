@@ -58,11 +58,5 @@ public class AthleteController {
         return this.athleteservice.getAllAthlete();
     }
 
-//    @GetMapping("search/{name}/{country}/{gender}/{event}")
-//    public List<Athlete> getAthlete(@PathVariable String name, @PathVariable String country,
-//                                         @PathVariable String gender, @PathVariable String event) {
-//
-//
-//        return this.athleteservice.Search(name,country,gender,event);
-//    }
+
 }

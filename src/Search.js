@@ -21,6 +21,13 @@ class Search extends React.Component
             athlete: []
         }
       }
+
+    componentDidMount(){
+
+        axios.get("http://localhost:8080/allAthlete").then((response) => {
+            this.setState({athlete:response.data})
+        });
+    }
       submit(event){
         event.preventDefault();
        
@@ -43,7 +50,7 @@ class Search extends React.Component
         return (
             
          
-<div align="center" style={{ width:1260, height: 810 } }>
+<div align="center" style={{ width:1260, height: 1300 } }>
 <div class="w-50 p-3"> 
         <form method="get"
           onSubmit= {(e)=> this.submit(e)}
@@ -61,7 +68,7 @@ class Search extends React.Component
           <center> <h1> Search </h1> </center>
           
           <Form.Item label="Name" labelCol={{span: 5}}>
-          <input class="form-control"  type="text" name="name"  id="name"  / >
+          <input class="form-control"  type="text" name="name"  id="name"  />
             
           </Form.Item>
           <Form.Item label="Gender" labelCol={{span: 5}}> 

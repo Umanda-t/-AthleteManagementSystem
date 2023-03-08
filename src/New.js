@@ -43,26 +43,30 @@ class New extends React.Component {
     ).then((res) => {
         console.log(res);
         var did=res.data;
+        const fileInput = document.getElementById('image');
+        const formData = new FormData();
+        formData.append('image', fileInput.files[0]);
+            const form = new FormData();
+            form.append('id', did);
+            form.append('image', fileInput.files[0]);
         console.log(did);
         if(did!==0)
           {
-              alert( "Succeeded" );
+              alert( "Data Added" );
+
+
               
-              axios.post("http://localhost:8080/addImage",{
-                id:did,
-                image:this.state.image
-            }
-            ).then((res) => {
+              axios.post('http://localhost:8080/addImage', form).then((res) => {
                 console.log(res);
                   {
                       alert( "Image Added" );
-                      
+                      window.location.replace("http://localhost:3000/Search/");
                      
                   }
                   
            } );
               
-             window.location.replace("http://localhost:3000/Search/");
+
              
           }
           
@@ -97,17 +101,17 @@ class New extends React.Component {
           <center> <h1> Add New Athlete  </h1> </center>
           
           <Form.Item label="First Name" labelCol={{span: 5}}>
-          <input class="form-control" placeholder="First Name" type="text" name="firstname"  id="firstname" onChange={(e)=>this.setState({firstname:e.target.value})}  value={this.state.firstname}  required / >
+          <input class="form-control" placeholder="First Name" type="text" name="firstname"  id="firstname" onChange={(e)=>this.setState({firstname:e.target.value})}  value={this.state.firstname}  required />
             
           </Form.Item>
 
           <Form.Item label="Last Name" labelCol={{span: 5}}>
-          <input class="form-control" placeholder="Last Name" type="text" name="lastname"  id="lastname" onChange={(e)=>this.setState({lastname:e.target.value})}  value={this.state.lastname}  required / >
+          <input class="form-control" placeholder="Last Name" type="text" name="lastname"  id="lastname" onChange={(e)=>this.setState({lastname:e.target.value})}  value={this.state.lastname}  required />
             
           </Form.Item>
 
           <Form.Item label="Date of Birth" labelCol={{span: 5}}>
-          <input class="form-control"  type="date" name="dob"  id="dob" onChange={(e)=>this.setState({dob:e.target.value})}  value={this.state.dob}  required / >
+          <input class="form-control"  type="date" name="dob"  id="dob" onChange={(e)=>this.setState({dob:e.target.value})}  value={this.state.dob}  required />
             
           </Form.Item>
 

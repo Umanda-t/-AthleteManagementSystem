@@ -1,9 +1,9 @@
 # Athlete Management System
 
 
-•	Back end -Spring Boot with the Rest APIs (Branch – master)
-•	Front end - React and Ant Design (Branch –frontend)
-•	Database – MYSQL
+#	Back end -Spring Boot with the Rest APIs (Branch – master)
+#	Front end - React and Ant Design (Branch –frontend)
+#	Database – MYSQL
 
 1.	Clone the repository to two folders 
 2.	For frontend checkout to frontend branch and backend use master branch

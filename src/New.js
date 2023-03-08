@@ -60,7 +60,7 @@ class New extends React.Component {
                 console.log(res);
                   {
                       alert( "Image Added" );
-                      window.location.replace("http://localhost:3000/Search/");
+                      //window.location.replace("http://localhost:3000/Search/");
                      
                   }
                   

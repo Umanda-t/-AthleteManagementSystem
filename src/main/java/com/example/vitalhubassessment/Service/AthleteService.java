@@ -20,10 +20,10 @@ public class AthleteService {
         return Repo.findById(id).get();
     }
 
-    public List<Athlete> Search(String name, String country, String gender, String event){
-        return Repo.findByKeyword(name,country,gender,event);
-
-    }
+//    public List<Athlete> Search(String name, String country, String gender, String event){
+//        return Repo.findByKeyword(name,country,gender,event);
+//
+//    }
 
     public List<Athlete> getAllAthlete(){
         return this.Repo.findAll();

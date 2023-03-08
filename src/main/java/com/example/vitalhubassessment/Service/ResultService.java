@@ -1,5 +1,6 @@
 package com.example.vitalhubassessment.Service;
 
+import com.example.vitalhubassessment.Model.Athlete;
 import com.example.vitalhubassessment.Model.Result;
 import com.example.vitalhubassessment.Repository.ResultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +17,9 @@ public class ResultService {
     }
     public List<Result> getAllResult(){
         return this.Repo.findAll();
+    }
+    public List<Result> Search(String name, String country, String gender, String event){
+        return Repo.findByKeyword(name,country,gender,event);
+
     }
 }

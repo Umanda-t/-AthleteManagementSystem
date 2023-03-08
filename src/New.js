@@ -20,62 +20,69 @@ class New extends React.Component {
       image:''
     }
   }
-  submit(event){
-    event.preventDefault();
-    const athlete={
-        firstname:this.state.firstname,
-        lastname:this.state.lastname,
-        gender:this.state.gender,
-        dob:this.state.dob,
-        country:this.state.country,
-        event:this.state.event,
-        image:this.state.image
-   }
-    
-    axios.post("http://localhost:8080/addAthlete",{
-        firstname:this.state.firstname,
-        lastname:this.state.lastname,
-        gender:this.state.gender,
-        dob:this.state.dob,
-        country:this.state.country,
-        event:this.state.event
-    }
-    ).then((res) => {
-        console.log(res);
-        var did=res.data;
-        const fileInput = document.getElementById('image');
-        const formData = new FormData();
-        formData.append('image', fileInput.files[0]);
-            const form = new FormData();
-            form.append('id', did);
-            form.append('image', fileInput.files[0]);
-        console.log(did);
-        if(did!==0)
-          {
-              alert( "Data Added" );
+  submit(event) {
+      event.preventDefault();
+      const athlete = {
+          firstname: this.state.firstname,
+          lastname: this.state.lastname,
+          gender: this.state.gender,
+          dob: this.state.dob,
+          country: this.state.country,
+          event: this.state.event,
+          image: this.state.image
+      }
+      var dateOfBirth = document.getElementById("dob").value;
+      const today = new Date();
+      const birthDate = new Date(dateOfBirth);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const monthDiff = today.getMonth() - birthDate.getMonth();
+      if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+          age--;
+      }
+      if (age < 16) {
+          alert("Athletes with age above 16 only will be allowed");
+      } else {
+          axios.post("http://localhost:8080/addAthlete", {
+                  firstname: this.state.firstname,
+                  lastname: this.state.lastname,
+                  gender: this.state.gender,
+                  dob: this.state.dob,
+                  country: this.state.country,
+                  event: this.state.event
+              }
+          ).then((res) => {
+                  console.log(res);
+                  var did = res.data;
+                  const fileInput = document.getElementById('image');
+                  const formData = new FormData();
+                  formData.append('image', fileInput.files[0]);
+                  const form = new FormData();
+                  form.append('id', did);
+                  form.append('image', fileInput.files[0]);
+                  console.log(did);
+                  if (did !== 0) {
+                      alert("Data Added");
 
 
-              
-              axios.post('http://localhost:8080/addImage', form).then((res) => {
-                console.log(res);
-                  {
-                      alert( "Image Added" );
-                      //window.location.replace("http://localhost:3000/Search/");
-                     
+                      axios.post('http://localhost:8080/addImage', form).then((res) => {
+                          console.log(res);
+                          {
+                              alert("Image Added");
+                              //window.location.replace("http://localhost:3000/Search/");
+
+                          }
+
+                      });
+
+
                   }
-                  
-           } );
-              
 
-             
-          }
-          
-   }
-   
-   );
+              }
+          );
 
-   
-}
+
+      }
+  }
  
         render(){
             

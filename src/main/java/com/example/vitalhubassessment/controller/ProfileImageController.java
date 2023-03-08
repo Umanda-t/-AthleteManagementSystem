@@ -22,18 +22,11 @@ public class ProfileImageController {
     private AthleteService athleteservice;
 
     @PostMapping("addImage")
-    public ResponseEntity<ProfileImage> uploadProfileImage(
-            @RequestParam("image") MultipartFile File, @RequestParam("id") Long id)
+    public ResponseEntity<ProfileImage> uploadProfileImage(@RequestParam("id") Long id,@RequestParam("image") MultipartFile File)
             throws IOException {
         Athlete o= athleteservice.Find(id);
         return new ResponseEntity<>(imageservice.uploadImage(File,o), HttpStatus.OK);
     }
 
-    @GetMapping("search/{name}/{country}/{gender}/{event}")
-    public List<Athlete> getStudentMarks(@PathVariable String name, @PathVariable String country,
-                                         @PathVariable String gender, @PathVariable String event) {
 
-
-        return this.athleteservice.Search(name,country,gender,event);
-    }
 }
